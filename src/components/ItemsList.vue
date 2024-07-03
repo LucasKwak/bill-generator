@@ -10,11 +10,14 @@
                 </li>
             </ul>
         </section>
+        <p>Total: {{ total }}</p>
+        <p>El IVA corresponde a: {{ taxes }}</p>
+
     </div>
 </template>
 
 <script lang="ts" setup>
-    import { Ref, ref } from "vue";
+    import { Ref, ref, computed } from "vue";
     import ItemGenerator from './ItemGenerator.vue';
     import ItemDetail from './ItemDetail.vue';
 
@@ -30,6 +33,22 @@
     function añadirItem(item:IItem) {
         items.value.push(item);
     }
+
+    const total = computed(
+        () => {
+            let subtotal = 0;
+            for(let i=0; i<items.value.length; i++){
+                subtotal = subtotal + items.value[i].price * items.value[i].units;
+            }
+            return subtotal;
+        }
+    );
+
+    const taxes = computed(
+        () => {
+            return total.value * 0.21;
+        }
+    );
 
 </script>
 
