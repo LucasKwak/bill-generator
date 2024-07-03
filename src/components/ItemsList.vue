@@ -3,12 +3,20 @@
         <section>
             <ItemGenerator @addItem="añadirItem"></ItemGenerator>
         </section>
+        <section>
+            <ul class="item-list">
+                <li v-for="(elm, index) in items" :key="index">
+                    <ItemDetail :name="elm.name" :category="elm.category" :price="elm.price" :units="elm.units"></ItemDetail>
+                </li>
+            </ul>
+        </section>
     </div>
 </template>
 
 <script lang="ts" setup>
     import { Ref, ref } from "vue";
     import ItemGenerator from './ItemGenerator.vue';
+    import ItemDetail from './ItemDetail.vue';
 
     interface IItem {
         name :string,
