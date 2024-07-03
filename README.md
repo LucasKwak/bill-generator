@@ -1,4 +1,9 @@
-# bill-generator
+# teacher-management
+
+## Project info
+Me adentro un poco más en Vue. En este proyecto me centraré en la comunicación vertical entre componentes y en los datos computados.
+
+El proyecto consiste en crear una plataforma donde podrás añadir items a tu factura para ver el precio total y cuánto IVA le corresponde.
 
 ## Project setup
 ```
@@ -19,6 +24,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
