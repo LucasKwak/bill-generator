@@ -1,18 +1,17 @@
 <template>
     <div class="main-wrapper">
-        <section>
-            <ItemGenerator @addItem="añadirItem"></ItemGenerator>
+        <div class="generator-total-wrapper">
+            <section>
+                <ItemGenerator @addItem="añadirItem"></ItemGenerator>
+            </section>
+            <section class="total-taxes">
+                <p>Total: {{ total }} €</p>
+                <p>El IVA corresponde a: {{ taxes }} €</p>
+            </section>
+        </div>
+        <section class="item-list">
+            <ItemDetail v-for="(elm, index) in items" :key="index" :name="elm.name" :category="elm.category" :price="elm.price" :units="elm.units"></ItemDetail>
         </section>
-        <section>
-            <ul class="item-list">
-                <li v-for="(elm, index) in items" :key="index">
-                    <ItemDetail :name="elm.name" :category="elm.category" :price="elm.price" :units="elm.units"></ItemDetail>
-                </li>
-            </ul>
-        </section>
-        <p>Total: {{ total }}</p>
-        <p>El IVA corresponde a: {{ taxes }}</p>
-
     </div>
 </template>
 
@@ -30,10 +29,12 @@
 
     let items:Ref<Array<IItem>> = ref([]);
 
+    // FUNCION A EJECUTAR CUANDO EL HIJO ItemGenerator NOS EMITA EL EVENTO
     function añadirItem(item:IItem) {
         items.value.push(item);
     }
 
+    // DATOS COMPUTADOS
     const total = computed(
         () => {
             let subtotal = 0;
@@ -49,12 +50,25 @@
             return total.value * 0.21;
         }
     );
-
 </script>
 
 <style scoped>
     .main-wrapper {
         display: flex;
         flex-direction: row;
+    }
+
+    .generator-total-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .item-list {
+        width: 100%;
+        padding: 0 15px 15px 15px;
+        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
 </style>

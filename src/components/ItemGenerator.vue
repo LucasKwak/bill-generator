@@ -43,12 +43,13 @@
     let item :Ref<IItem> = ref(
         {
             name: "",
-            category: "",
+            category: "Ocio",
             price: 0,
             units: 0
         }
     );
 
+    // EVENTO A EMITIR (LO EMITIMOS AL HACER CLICK EN EL BOTÓN)
     const emit = defineEmits<{
         (e: "addItem", item:IItem): void
     }>();
@@ -66,7 +67,7 @@
         emit("addItem", tempItem);
 
         item.value.name = '';
-        item.value.category = '';
+        item.value.category = 'Ocio';
         item.value.price = 0;
         item.value.units = 0;
     }
@@ -79,7 +80,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: yellow;
+        background-color: #b0b087;
+        border-radius: 15px;
+        padding-bottom: 10px;
+    }
+
+    .item-generator h2{
+        margin: 0;
     }
 
     .item-form {
@@ -110,16 +117,16 @@
 
     .form__button {
         font-family: Avenir;
-        background-color: blueviolet;
+        background-color: #58706d;
         color: white;
-        border: 1px solid blueviolet;
+        border: 1px solid #58706d;
         outline: 0;
     }
 
     .form__button:hover{
         background-color: white;
-        color: blueviolet;
-        border: 1px solid blueviolet;
+        color: #58706d;
+        border: 1px solid #58706d;
         box-sizing: content-box;
     }
 </style>
